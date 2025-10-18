@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>หน้าแรก - Personal Life & MM Dashboard (โทนส้มอ่อน)</title>
+<link rel="icon" href="data:;base64,iVBORw0KGgo="> 
+<style>
+  :root{--bg:#cecdcc;--card:#dad7d6;--muted:#7a5a3a;--accent:#fb923c;--accent2:#ffb77a;--glass:rgba(251,146,60,0.06)}
+  *{box-sizing:border-box;font-family:Inter,system-ui,Arial,'Noto Sans Thai'}
+  html,body{height:100%;margin:0;background:linear-gradient(180deg,#cfcfcc 0%, #797877 100%);color:#3b2b20}
+  .wrap{max-width:1200px;margin:18px auto;padding:18px}
+  /* Top navigation */
+  nav.topbar{display:flex;align-items:center;gap:14px;padding:10px 12px;border-radius:12px;background:linear-gradient(90deg,var(--card),#fff8f2);box-shadow:0 6px 30px rgba(251,146,60,0.06)}
+  .brand{display:flex;gap:12px;align-items:center}
+  .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:800;color:#ffffff}
+  h1{margin:0;font-size:18px}
+  .lead{color:var(--muted);font-size:13px}
+  .menu{display:flex;gap:8px;margin-left:24px}
+  .menu button{background:transparent;border:none;padding:8px 12px;border-radius:8px;cursor:pointer;color:var(--muted);font-weight:600}
+  .menu button.active{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff}
+  .top-actions{margin-left:auto;display:flex;gap:8px}
+  .btn{background:var(--accent);border:none;color:#fff;padding:8px 12px;border-radius:8px;cursor:pointer}
+
+  .grid{display:grid;grid-template-columns:320px 1fr;gap:14px;margin-top:18px}
+  .card{background:transparent;padding:12px;border-radius:12px}
+  .panel{background:var(--card);padding:12px;border-radius:12px;box-shadow:0 8px 30px rgba(59,21,10,0.04)}
+  label{color:var(--muted);font-size:13px}
+  input,select,textarea{width:100%;padding:8px;border-radius:8px;border:1px solid rgba(59,21,10,0.04);background:transparent;color:inherit}
+  .stats{display:flex;gap:10px}
+  .stat{flex:1;padding:10px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.4));text-align:center}
+  .stat h3{margin:0;font-size:18px;color:#3b2b20}
+  .muted{color:var(--muted)}
+  .section{margin-top:12px}
+  .two-cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .tasks-list, .goals-list, .invest-list{max-height:260px;overflow:auto;margin-top:8px}
+  .item{padding:8px;border-radius:8px;background:rgba(255,255,255,0.6);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+  .small{padding:6px 8px;font-size:13px}
+  .canvas-area{height:360px;border-radius:10px;overflow:hidden;background:linear-gradient(180deg,#fff6f0,#fff2ea)}
+  footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
+  @media(max-width:980px){.grid{grid-template-columns:1fr}.logo{display:none}.menu{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="topbar">
+    <div class="brand">
+      <div class="logo">PL</div>
+      <div>
+        <h1>Personal Life Planner</h1>
+        <div class="lead">แดชบอร์ดเดียวสำหรับวางแผนชีวิต การเงิน และการลงทุน</div>
+      </div>
+    </div>
+
+    <div class="menu" role="navigation" aria-label="Main menu">
+
+<a href="https://docs.google.com/spreadsheets/d/1GwLN_NosD8AaXylmSHEVydf96qIPtP5r7n2aiYqfiUQ/edit?gid=1582773833#gid=1582773833">
+        <button data-tab="active">แดชบอร์ดช่วงอายุ</button>
+    </a>
+
+
+<a href="file:///C:/Users/ICTco/OneDrive/%E0%B9%80%E0%B8%94%E0%B8%AA%E0%B8%81%E0%B9%8C%E0%B8%97%E0%B9%87%E0%B8%AD%E0%B8%9B/HTML/%E0%B8%A3%E0%B8%B2%E0%B8%A2%E0%B8%88%E0%B9%88%E0%B8%B2%E0%B8%A2.html">
+        <button data-tab="active">โปรแกรมรายรับ-รายจ่าย</button>
+    </a>
+     
+      <a href="file:///C:/Users/ICTco/OneDrive/%E0%B9%80%E0%B8%94%E0%B8%AA%E0%B8%81%E0%B9%8C%E0%B8%97%E0%B9%87%E0%B8%AD%E0%B8%9B/HTML/hh.html">
+        <button data-tab="active">ตารางการลงทุน</button>
+    </a>
+
+
+<a href="file:///C:/Users/ICTco/OneDrive/%E0%B9%80%E0%B8%94%E0%B8%AA%E0%B8%81%E0%B9%8C%E0%B8%97%E0%B9%87%E0%B8%AD%E0%B8%9B/HTML/%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%9A_mm_%E0%B8%95%E0%B8%A5%E0%B8%AD%E0%B8%94%E0%B8%8A%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%95_%E0%B8%AB%E0%B8%99%E0%B9%89%E0%B8%B2_html.html">
+        <button data-tab="active">ระบบวางแผน</button>
+    </a>
+<a href="file:///C:/Users/ICTco/OneDrive/%E0%B9%80%E0%B8%94%E0%B8%AA%E0%B8%81%E0%B9%8C%E0%B8%97%E0%B9%87%E0%B8%AD%E0%B8%9B/HTML/%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%9A_%E0%B8%81%E0%B8%A5%E0%B8%A2%E0%B8%B8%E0%B8%97%E0%B8%98%E0%B9%8C%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%A5%E0%B8%87%E0%B8%97%E0%B8%B8%E0%B8%99_%E0%B8%AB%E0%B8%99%E0%B9%89%E0%B8%B2_html.html">
+        <button data-tab="active">กลยุทธ์การลงทุน</button>
+    </a>
+<a href="file:///C:/Users/ICTco/OneDrive/%E0%B9%80%E0%B8%94%E0%B8%AA%E0%B8%81%E0%B9%8C%E0%B8%97%E0%B9%87%E0%B8%AD%E0%B8%9B/HTML/flowchart.html">
+        <button data-tab="active">สร้างแผนผัง</button>
+    </a>
+<a href="#timeline-section">
+        <button data-tab="active">ไทม์ไลน์</button>
+    </a>
+   <a href="file:///C:/Users/ICTco/OneDrive/%E0%B9%80%E0%B8%94%E0%B8%AA%E0%B8%81%E0%B9%8C%E0%B8%97%E0%B9%87%E0%B8%AD%E0%B8%9B/HTML/%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%9A%E0%B8%9B%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%9E%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%95%E0%B8%AB%E0%B8%B8%E0%B9%89%E0%B8%99.html"></a>
+ <button data-tab="resources">ทรัพย์สิน</button>
+       
+      <button data-tab="profile">โปรไฟล์</button>
+
+    </div>
+
+    <div class="top-actions">
+      <button id="newPlan" class="btn">สร้างแผนใหม่</button>
+      <button id="exportBtn" class="btn" style="background:#ff8a4c">ส่งออก</button>
+    </div>
+  </nav>
+
+  <div class="grid">
+    <aside class="panel">
+      <div class="card panel">
+        <h3>ภาพรวมด่วน</h3>
+        <div class="stats section">
+          <div class="stat"><h3 id="s_net">0 ฿</h3><p class="muted">สินทรัพย์สุทธิ</p></div>
+          <div class="stat"><h3 id="s_month">0 ฿</h3><p class="muted">ออมต่อเดือน</p></div>
+          <div class="stat"><h3 id="s_goal">0</h3><p class="muted">เป้าหมายคงเหลือ</p></div>
+        </div>
+
+        <div class="section">
+          <label>สถานะฉุกเฉิน</label>
+          <div style="display:flex;gap:8px;margin-top:8px"><input id="emergencyAmount" type="number" placeholder="จำนวน (฿)"/><button id="setEmergency" class="small btn">ตั้ง</button></div>
+          <div class="muted section">คำแนะนำ: มีสำรอง 3-6 เดือนของค่าใช้จ่าย</div>
+        </div>
+
+        <div class="section">
+          <h4>Quick Actions</h4>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+            <button id="openMM" class="small btn">เปิด MM Tracker</button>
+            <button id="openInvest" class="small btn">กลยุทธ์การลงทุน</button>
+            <button id="openFlow" class="small btn">Flowchart แผนชีวิต</button>
+          </div>
+        </div>
+
+      </div>
+    </aside>
+
+    <main>
+      <div class="card panel">
+        <h3>แผนชีวิตแบบภาพรวม (Roadmap)</h3>
+        <div class="muted">Timeline: การเงิน / อาชีพ / ครอบครัว / สุขภาพ</div>
+        <div class="section canvas-area" id="timelineWrap">
+          <canvas id="timelineCanvas" width="900" height="260" style="width:100%;height:260px"></canvas>
+        </div>
+
+        <div class="section two-cols">
+          <div class="card panel">
+            <h4>เป้าหมายสำคัญ</h4>
+            <div style="display:flex;gap:8px;margin-top:8px"><input id="goalName" placeholder="ตั้งเป้าหมาย เช่น ดาวน์บ้าน"/><input id="goalAmt" type="number" placeholder="จำนวน (฿)"/><button id="addGoalBtn" class="small btn">เพิ่ม</button></div>
+            <div class="goals-list" id="goalsList"></div>
+          </div>
+
+          <div class="card panel">
+            <h4>งาน & กิจวัตร</h4>
+            <div style="display:flex;gap:8px;margin-top:8px"><input id="taskName" placeholder="งานหรือกิจวัตร"/><button id="addTaskBtn" class="small btn">เพิ่ม</button></div>
+            <div class="tasks-list" id="tasksList"></div>
+          </div>
+        </div>
+
+        <div class="section panel" style="margin-top:16px">
+          <h4>แผนการเงิน (MM)</h4>
+          <div style="display:flex;gap:10px;align-items:center"><label>รายได้สุทธิ/เดือน</label><input id="income" type="number" value="30000" style="width:140px"/><label>สัดส่วนออม%</label><input id="savePerc" type="number" value="20" style="width:80px"/></div>
+          <div class="muted section">แบ่งสัดส่วนเริ่มต้น: 50/30/20 — ปรับได้ตามต้องการ</div>
+        </div>
+
+        <div class="section two-cols">
+          <div class="card panel">
+            <h4>กลยุทธ์การลงทุน (เร็ว)</h4>
+            <div style="display:flex;gap:8px;margin-top:8px"><label>โปรไฟล์</label><select id="miniProfile"><option>Balanced</option><option>Conservative</option><option>Growth</option></select><button id="miniSuggest" class="small btn">เสนอ</button></div>
+            <div class="invest-list" id="miniAlloc"></div>
+          </div>
+
+          <div class="card panel">
+            <h4>วิเคราะห์รายเดือน</h4>
+            <canvas id="miniChart" width="400" height="160" style="width:100%;height:160px"></canvas>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="card panel section">
+        <h3>ทรัพยากร & บทเรียน</h3>
+        <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+          <button class="small btn">คู่มือ MM</button>
+          <button class="small btn">วิธีเริ่มลงทุน</button>
+          <button class="small btn">รูปแบบประกัน</button>
+          <button class="small btn">คำนวณภาษี</button>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <footer>ออกแบบเพื่อการวางแผนชีวิตอย่างเป็นระบบ — ข้อมูลเก็บในเครื่องของคุณ (localStorage) • ปรับแต่งได้ตามต้องการ</footer>
+</div>
+
+<script>
+// Keep same JS behaviors but update colors and menu interactions
+const $=id=>document.getElementById(id)
+function money(x){return Number(x||0).toLocaleString('en-US')+' ฿'}
+let state = JSON.parse(localStorage.getItem('pl_state')||'{}')
+if(!state.goals) state.goals=[]
+if(!state.tasks) state.tasks=[]
+
+function save(){ localStorage.setItem('pl_state', JSON.stringify(state)); renderAll() }
+function renderAll(){
+  $('s_net').innerText = money(state.net||0)
+  $('s_month').innerText = money(state.monthlySave||0)
+  $('s_goal').innerText = (state.goals||[]).length
+  renderGoals(); renderTasks(); renderMiniAlloc(); drawTimeline(); drawMiniChart()
+}
+
+function renderGoals(){ const list = $('goalsList'); list.innerHTML=''; if(state.goals.length===0) { list.innerHTML='<div class="muted">ยังไม่มีเป้าหมาย</div>'; return }
+  state.goals.forEach(g=>{ const it=document.createElement('div'); it.className='item'; it.innerHTML=`<div><strong>${g.name}</strong><div class='muted' style='font-size:12px'>${money(g.amt)} • เก็บแล้ว ${money(g.saved||0)}</div></div><div><button data-id='${g.id}' style='background:var(--accent)' class='small'>ฝาก</button> <button data-del='${g.id}' style='background:#ef4444' class='small'>ลบ</button></div>`; list.appendChild(it) })
+  list.querySelectorAll('[data-id]').forEach(b=>b.addEventListener('click',()=>{ const id=b.dataset.id; const v = prompt('จำนวนฝาก (฿)'); if(!v) return; const g = state.goals.find(x=>x.id===id); g.saved = (g.saved||0) + Number(v); save(); }))
+  list.querySelectorAll('[data-del]').forEach(b=>b.addEventListener('click',()=>{ if(confirm('ลบเป้าหมาย?')){ state.goals = state.goals.filter(x=>x.id!==b.dataset.del); save() }}))
+}
+
+function renderTasks(){ const list = $('tasksList'); list.innerHTML=''; if(state.tasks.length===0) { list.innerHTML='<div class="muted">ยังไม่มีงาน</div>'; return }
+  state.tasks.forEach(t=>{ const it=document.createElement('div'); it.className='item'; it.innerHTML=`<div><input type='checkbox' data-id='c_${t.id}' ${t.done? 'checked':''}/> <strong style='margin-left:8px'>${t.name}</strong></div><div><button data-del='${t.id}' style='background:#ef4444' class='small'>ลบ</button></div>`; list.appendChild(it) })
+  list.querySelectorAll('input[type=checkbox]').forEach(cb=>cb.addEventListener('change',()=>{ const id = cb.dataset.id.replace('c_',''); const t=state.tasks.find(x=>x.id===id); t.done = cb.checked; save() }))
+  list.querySelectorAll('[data-del]').forEach(b=>b.addEventListener('click',()=>{ if(confirm('ลบรายการ?')){ state.tasks = state.tasks.filter(x=>x.id!==b.dataset.del); save() }}))
+}
+
+$('addGoalBtn').addEventListener('click', ()=>{ const name=$('goalName').value.trim(); const amt=Number($('goalAmt').value||0); if(!name||!amt) return alert('กรอกชื่อและจำนวน'); const id='g'+Date.now(); state.goals.push({id,name,amt,saved:0}); $('goalName').value=''; $('goalAmt').value=''; save() })
+$('addTaskBtn').addEventListener('click', ()=>{ const name=$('taskName').value.trim(); if(!name) return; const id='t'+Date.now(); state.tasks.push({id,name,done:false}); $('taskName').value=''; save() })
+
+$('income').addEventListener('input', ()=>{ const inc=Number($('income').value||0); const sp=Number($('savePerc').value||0); state.monthlySave = Math.round(inc*sp/100); save() })
+$('savePerc').addEventListener('input', ()=>{ const inc=Number($('income').value||0); const sp=Number($('savePerc').value||0); state.monthlySave = Math.round(inc*sp/100); save() })
+
+$('miniSuggest').addEventListener('click', ()=>{ const pf=$('miniProfile').value; let alloc={}; if(pf==='Balanced') alloc={equity:40,bonds:35,reit:15,cash:5,gold:5}; else if(pf==='Conservative') alloc={equity:20,bonds:50,cash:20,reit:5,gold:5}; else alloc={equity:60,bonds:20,reit:10,cash:5,gold:5}; state.miniAlloc=alloc; save() })
+function renderMiniAlloc(){ const wrap=$('miniAlloc'); wrap.innerHTML=''; const a = state.miniAlloc || {}; if(Object.keys(a).length===0) return wrap.innerHTML='<div class="muted">ยังไม่มีสัดส่วน</div>';
+  Object.keys(a).forEach(k=>{ const it=document.createElement('div'); it.className='item'; it.innerHTML=`<div><strong>${k.toUpperCase()}</strong><div class='muted' style='font-size:12px'>${a[k]}%</div></div><div><button data-k='${k}' class='small' style='background:var(--accent)'>ดู</button></div>`; wrap.appendChild(it) })
+}
+
+function drawTimeline(){ const c = $('timelineCanvas'); const ctx = c.getContext('2d'); const w=c.width, h=c.height; ctx.clearRect(0,0,w,h); ctx.fillStyle='#fff8f3'; ctx.fillRect(0,0,w,h); ctx.strokeStyle='rgba(59,21,10,0.06)'; ctx.lineWidth=1; const events = state.timeline || [{year:2026,txt:'ซื้อบ้าน'},{year:2028,txt:'ลูกเข้าเรียน'},{year:2035,txt:'เกษียณ'}]; const start=2025, end=2045; const len=end-start; ctx.fillStyle='rgba(251,146,60,0.95)'; ctx.font='12px Inter'; events.forEach((ev,i)=>{ const x = 40 + ((ev.year-start)/len)*(w-80); ctx.beginPath(); ctx.arc(x, h/2, 8,0,Math.PI*2); ctx.fill(); ctx.fillStyle='#3b2b20'; ctx.fillText(ev.year+' • '+ev.txt, x-30, h/2+28); ctx.fillStyle='rgba(251,146,60,0.95)'; }) }
+
+function drawMiniChart(){ const c=$('miniChart'); const ctx=c.getContext('2d'); ctx.clearRect(0,0,c.width,c.height); const data = Array.from({length:12}, (_,i)=> 30000 + i*(1000 + Math.random()*2000)); const max=Math.max(...data); ctx.beginPath(); ctx.moveTo(0,c.height); data.forEach((v,i)=>{ const x = i*(c.width/data.length); const y = c.height - (v/max)*c.height; ctx.lineTo(x,y) }); ctx.strokeStyle='rgba(251,146,60,0.95)'; ctx.lineWidth=2; ctx.stroke(); }
+
+$('exportBtn').addEventListener('click', ()=>{ const s = localStorage.getItem('pl_state')||'{}'; const blob = new Blob([s], {type:'application/json'}); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href=url; a.download='personal_life_plan.json'; a.click(); URL.revokeObjectURL(url) })
+$('openMM').addEventListener('click', ()=>{ alert('เปิด MM Tracker (ฟีเจอร์ตัวอย่าง)') })
+$('openInvest').addEventListener('click', ()=>{ alert('เปิด กลยุทธ์การลงทุน (ฟีเจอร์ตัวอย่าง)') })
+$('openFlow').addEventListener('click', ()=>{ alert('เปิด Flowchart แผนชีวิต (ฟีเจอร์ตัวอย่าง)') })
+$('newPlan').addEventListener('click', ()=>{ if(confirm('เริ่มแผนใหม่ จะล้างข้อมูลปัจจุบัน?')){ localStorage.removeItem('pl_state'); state={goals:[],tasks:[]}; save(); } })
+
+// menu behaviour
+document.querySelectorAll('.menu button').forEach(b=>b.addEventListener('click', ()=>{ document.querySelectorAll('.menu button').forEach(x=>x.classList.remove('active')); b.classList.add('active'); const tab=b.dataset.tab; // simple visual switch (could be extended)
+  alert('สลับไปยัง: '+tab)
+}))
+
+if(!localStorage.getItem('pl_state')) save(); renderAll();
+</script>
+</body>
+</html>
